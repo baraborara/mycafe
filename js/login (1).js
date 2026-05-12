@@ -1,36 +1,40 @@
-document.getElementById("loginForm").addEventListener("submit", async function(e) {
+const loginForm = document.getElementById("loginForm");
+
+loginForm.addEventListener("submit", function(e){
+
     e.preventDefault();
 
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
-    const res = await fetch("https://herisusanta.my.id/javalogin/api/auth.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: `action=login&username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
-    });
-
-    const data = await res.json();
-
-    if (data.status === "success") {
-        // simpan username
-            localStorage.setItem("username", data.username);
-            window.location.href = "../index.html";
-         
-    // } else {
-    //     document.getElementById("message").innerText = "Username / Password salah";alert("Login gagal");
-    // }
-    
-    } else {
     const alertBox = document.getElementById("alertBox");
-    alertBox.innerText = "Username atau Password salah, silahkan coba lagi";
-    alertBox.style.display = "block";
 
-    setTimeout(() => {
-        alertBox.style.display = "none";
-    }, 3000);
-} 
-   
+    const savedUser = JSON.parse(localStorage.getItem("user"));
+
+    if(savedUser === null){
+
+        alertBox.style.color = "red";
+        alertBox.innerHTML = "Account not found!";
+
+        return;
+    }
+
+    if(username === savedUser.username &&
+       password === savedUser.password){
+
+        localStorage.setItem("isLoggedIn", "true");
+
+        alertBox.style.color = "green";
+        alertBox.innerHTML = "Login successful!";
+
+        setTimeout(() => {
+            window.location.href = "../index.html";
+        }, 1000);
+
+    } else {
+
+        alertBox.style.color = "red";
+        alertBox.innerHTML = "Wrong username or password!";
+    }
+
 });
