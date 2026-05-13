@@ -1,65 +1,404 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Klassy Cafe</title>
+    <title>Favor Heritage Café</title>
 
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
-    <link rel="stylesheet" href="assets/css/templatemo-klassy-cafe.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins', sans-serif;
+        }
+
+        body{
+            background:#050505;
+            color:white;
+            overflow-x:hidden;
+        }
+
+        /* Navbar */
+
+        .navbar{
+            position:fixed;
+            top:0;
+            width:100%;
+            z-index:999;
+            background:rgba(0,0,0,0.7);
+            backdrop-filter:blur(10px);
+            padding:20px 60px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            border-bottom:1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo{
+            font-size:28px;
+            font-weight:700;
+            color:#ffcc70;
+            letter-spacing:3px;
+            text-decoration:none;
+        }
+
+        .navbar ul{
+            display:flex;
+            list-style:none;
+            gap:30px;
+        }
+
+        .navbar ul li a{
+            color:white;
+            text-decoration:none;
+            transition:0.3s;
+        }
+
+        .navbar ul li a:hover{
+            color:#ff4ecd;
+        }
+
+        /* Hero */
+
+        .hero{
+            height:100vh;
+            background:
+            linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+            url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070');
+            background-size:cover;
+            background-position:center;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            padding:20px;
+            position:relative;
+        }
+
+        .hero::before{
+            content:'';
+            position:absolute;
+            width:300px;
+            height:300px;
+            background:#ff00c8;
+            filter:blur(150px);
+            top:100px;
+            left:100px;
+            opacity:0.3;
+        }
+
+        .hero::after{
+            content:'';
+            position:absolute;
+            width:300px;
+            height:300px;
+            background:#00e1ff;
+            filter:blur(150px);
+            bottom:100px;
+            right:100px;
+            opacity:0.3;
+        }
+
+        .hero-content{
+            position:relative;
+            z-index:2;
+            max-width:800px;
+        }
+
+        .hero h1{
+            font-size:80px;
+            font-weight:800;
+            margin-bottom:20px;
+        }
+
+        .hero span{
+            background:linear-gradient(to right,#ffcc70,#ff4ecd,#8b5cf6);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+        }
+
+        .hero p{
+            color:#ddd;
+            font-size:20px;
+            line-height:1.8;
+            margin-bottom:40px;
+        }
+
+        .btn-custom{
+            padding:15px 40px;
+            border:none;
+            border-radius:15px;
+            background:linear-gradient(to right,#ffcc70,#ff4ecd);
+            color:black;
+            font-weight:700;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .btn-custom:hover{
+            transform:scale(1.05);
+        }
+
+        /* Menu */
+
+        .menu{
+            padding:100px 50px;
+        }
+
+        .section-title{
+            text-align:center;
+            margin-bottom:60px;
+        }
+
+        .section-title h2{
+            font-size:50px;
+            font-weight:700;
+        }
+
+        .cards{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+            gap:30px;
+        }
+
+        .card{
+            background:#111;
+            border:1px solid rgba(255,255,255,0.1);
+            border-radius:25px;
+            overflow:hidden;
+            transition:0.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-10px);
+            box-shadow:0 0 30px rgba(255,0,200,0.3);
+        }
+
+        .card img{
+            width:100%;
+            height:250px;
+            object-fit:cover;
+        }
+
+        .card-content{
+            padding:25px;
+        }
+
+        .card-content h3{
+            margin-bottom:15px;
+        }
+
+        .card-content p{
+            color:#bbb;
+        }
+
+        .price{
+            margin-top:20px;
+            color:#ffcc70;
+            font-size:22px;
+            font-weight:700;
+        }
+
+        /* Footer */
+
+        footer{
+            padding:40px;
+            text-align:center;
+            border-top:1px solid rgba(255,255,255,0.1);
+            color:#888;
+        }
+
+        @media(max-width:768px){
+
+            .navbar{
+                padding:20px;
+                flex-direction:column;
+                gap:20px;
+            }
+
+            .hero h1{
+                font-size:50px;
+            }
+
+            .hero p{
+                font-size:16px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
 <body>
-  <header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
 
-                    <a href="index.html" class="logo">
-                        <img src="assets/images/klassy-logo.png" alt="logo">
-                    </a>
+    <!-- Navbar -->
 
-                    <ul class="nav">
-                        <li><a href="#top" class="active">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#menu">Menu</a></li>
-                        <li><a href="#reservation">Contact</a></li>
-                        <li><a href="dashboard/index.html">Dashboard</a></li>
-                        <li><a href="#" onclick="logout()">Logout</a></li>
-                    </ul>
+    <div class="navbar">
 
-                </nav>
-            </div>
-         </div>
+        <a href="#" class="logo">
+            FAVOR HERITAGE
+        </a>
+
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="dashboard/index.html">Dashboard</a></li>
+            <li><a href="#" onclick="logout()">Logout</a></li>
+        </ul>
+
     </div>
-</header>
 
-<section style="padding-top:150px; text-align:center;">
-    <h1>Welcome To Klassy Cafe ☕</h1>
-    <p>You are successfully logged in.</p>
-</section>
+    <!-- Hero -->
 
-<script>
-// proteksi halaman
-if(localStorage.getItem("isLoggedIn") !== "true"){
-    window.location.href = "login/index.html";
-}
+    <section class="hero">
 
-function logout(){
+        <div class="hero-content">
 
-    localStorage.removeItem("isLoggedIn");
+            <h1>
+                FAVOR <span>HERITAGE</span>
+            </h1>
 
-    alert("Logout berhasil!");
+            <p>
+                Café premium bernuansa gelap elegan dengan pizza Italia,
+                kopi artisan, dan lampu neon warna-warni yang menciptakan
+                suasana malam sempurna.
+            </p>
 
-    window.location.href = "login/index.html";
-}
+            <button class="btn-custom">
+                Explore Menu
+            </button>
 
-</script>
+        </div>
+
+    </section>
+
+    <!-- Menu -->
+
+    <section class="menu" id="menu">
+
+        <div class="section-title">
+            <h2>Popular Menu</h2>
+        </div>
+
+        <div class="cards">
+
+            <!-- Pizza -->
+
+            <div class="card">
+
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200">
+
+                <div class="card-content">
+
+                    <h3>Truffle Pepperoni Pizza</h3>
+
+                    <p>
+                        Pizza autentik Italia dengan pepperoni premium
+                        dan aroma truffle khas Favor Heritage.
+                    </p>
+
+                    <div class="price">
+                        Rp85.000
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Coffee -->
+
+            <div class="card">
+
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200">
+
+                <div class="card-content">
+
+                    <h3>Velvet Espresso</h3>
+
+                    <p>
+                        Espresso premium dengan aroma smoky dan rasa
+                        kopi yang hangat.
+                    </p>
+
+                    <div class="price">
+                        Rp32.000
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Pasta -->
+
+            <div class="card">
+
+                <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=1200">
+
+                <div class="card-content">
+
+                    <h3>Black Pasta Alfredo</h3>
+
+                    <p>
+                        Pasta creamy tinta cumi dengan parmesan
+                        dan smoked beef.
+                    </p>
+
+                    <div class="price">
+                        Rp78.000
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer>
+        © 2026 Favor Heritage Café • Dark Italian Night Experience
+    </footer>
+
+    <script>
+
+        // Proteksi halaman login
+
+        if(localStorage.getItem("isLoggedIn") !== "true"){
+            window.location.href = "login/index.html";
+        }
+
+        // Logout
+
+        function logout(){
+
+            localStorage.removeItem("isLoggedIn");
+
+            alert("Logout berhasil!");
+
+            window.location.href = "login/index.html";
+
+        }
+
+    </script>
 
 </body>
 </html>
